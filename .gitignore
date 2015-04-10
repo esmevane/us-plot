@@ -1,0 +1,7 @@
+.gem
+.DS_Store
+.sass-cache/
+build/
+notes/
+node_modules/
+tmp/

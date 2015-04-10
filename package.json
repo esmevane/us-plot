@@ -1,0 +1,26 @@
+{
+  "name": "private",
+  "private": true,
+  "devDependencies": {
+    "chai": "",
+    "coffee-script": "",
+    "d3": "",
+    "express": "",
+    "grunt": "",
+    "grunt-browserify": "",
+    "grunt-coffee-react": "",
+    "grunt-contrib-copy": "",
+    "grunt-contrib-sass": "",
+    "grunt-contrib-uglify": "",
+    "grunt-contrib-watch": "",
+    "grunt-express": "",
+    "grunt-mocha-test": "",
+    "grunt-react": "",
+    "matchdep": "",
+    "node-neat": "",
+    "react": "",
+    "topojson": "",
+    "underscore": ""
+  },
+  "dependencies": {}
+}

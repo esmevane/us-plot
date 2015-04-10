@@ -10041,7 +10041,7 @@
 
 },{}],3:[function(require,module,exports){
 (function() {
-  var d3, height, path, svg, topojson, width;
+  var d3, height, legend, legendCircle, legendText, path, radius, svg, topojson, translate, width;
 
   d3 = require('d3');
 
@@ -10058,11 +10058,67 @@
     width: width
   });
 
-  d3.json('counties', function(error, response) {
+  radius = d3.scale.sqrt().domain([0, 1e6]).range([0, 15]);
+
+  translate = "translate(" + (width - 50) + ", " + (height - 20) + ")";
+
+  legend = svg.append('g').attr({
+    "class": 'legend',
+    transform: translate
+  }).selectAll('g').data([1e6, 3e6, 6e6]).enter().append('g');
+
+  legendCircle = {
+    r: radius,
+    cy: function(d) {
+      return -radius(d);
+    }
+  };
+
+  legend.append('circle').attr(legendCircle);
+
+  legendText = {
+    dy: '1.3em',
+    y: function(d) {
+      return -2 * radius(d);
+    }
+  };
+
+  legend.append('text').attr(legendText).text(d3.format('.1s'));
+
+  d3.json('us', function(error, response) {
+    var borderDatum, filter, landDatum, radiusCalc, sortedBubbles, transform;
     if (error != null) {
       return console.error(error);
     }
-    return svg.append('path').datum(topojson.mesh(response)).attr('d', path);
+    filter = function(base, other) {
+      return base !== other;
+    };
+    transform = function(diameter) {
+      return "translate(" + (path.centroid(diameter)) + ")";
+    };
+    radiusCalc = function(data) {
+      return radius(data.properties.population);
+    };
+    landDatum = topojson.feature(response, response.objects.nation);
+    borderDatum = topojson.mesh(response, response.objects.states, filter);
+    sortedBubbles = topojson.feature(response, response.objects.counties).features.sort(function(base, other) {
+      return other.properties.population - base.properties.population;
+    });
+    svg.append('path').datum(landDatum).attr({
+      "class": 'land',
+      d: path
+    });
+    svg.append('path').datum(borderDatum).attr({
+      "class": 'border',
+      d: path
+    });
+    return svg.append('g').attr({
+      "class": 'bubble'
+    }).selectAll('circle').data(sortedBubbles).enter().append('circle').attr({
+      transform: transform
+    }).attr({
+      r: radiusCalc
+    });
   });
 
 }).call(this);

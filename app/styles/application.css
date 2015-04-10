@@ -260,10 +260,39 @@ body {
   align-content: center;
   align-items: center; }
 
-path {
+.land {
+  fill: #dec7d0; }
+
+.bubble circle {
+  fill: #4e475f;
+  fill-opacity: 0.5;
+  stroke: #e7d7dd;
+  stroke-width: 0.5px;
+  transition: all 0.5s ease; }
+  .bubble circle:hover {
+    fill: #5a526e;
+    fill-opacity: 0.4;
+    stroke-width: 1px; }
+
+.border {
   fill: none;
-  stroke: #c197a7;
+  stroke: #f1e7eb;
   stroke-linejoin: round;
   stroke-linecap: round; }
+
+.county {
+  fill: none;
+  stroke: #f1e7eb;
+  stroke-linejoin: round;
+  stroke-linecap: round; }
+
+.legend circle {
+  fill: none;
+  stroke: #ccc; }
+
+.legend text {
+  fill: #777;
+  font: 10px sans-serif;
+  text-anchor: middle; }
 
 /*# sourceMappingURL=application.css.map */

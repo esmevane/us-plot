@@ -17,8 +17,38 @@ body
   align-content: center
   align-items: center
 
-path
+.land
+  fill: lighten($base-font-color, 15%)
+
+.bubble circle
+  fill: lighten($byline-color, 10%)
+  fill-opacity: .5
+  stroke: lighten($base-font-color, 20%)
+  stroke-width: 0.5px
+  transition: all 0.5s ease
+
+  &:hover
+    fill: lighten($byline-color, 15%)
+    fill-opacity: .4
+    stroke-width: 1px
+
+.border
   fill: none
-  stroke: $base-font-color
+  stroke: lighten($base-font-color, 25%)
   stroke-linejoin: round
   stroke-linecap: round
+
+.county
+  fill: none
+  stroke: lighten($base-font-color, 25%)
+  stroke-linejoin: round
+  stroke-linecap: round
+
+.legend circle
+  fill: none
+  stroke: #ccc
+
+.legend text
+  fill: #777
+  font: 10px sans-serif
+  text-anchor: middle

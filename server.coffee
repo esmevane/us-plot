@@ -8,6 +8,8 @@ app.use '/images',  express.static "app/images"
 app.use '/scripts', express.static "app/scripts"
 app.use '/styles',  express.static "app/styles"
 
+routeToFile app: app, route: '/us',       file: 'build/us.json'
+routeToFile app: app, route: '/states',   file: 'build/states.json'
 routeToFile app: app, route: '/counties', file: 'build/counties.json'
 routeToFile app: app, route: '*',         file: 'app/index.html'
 
